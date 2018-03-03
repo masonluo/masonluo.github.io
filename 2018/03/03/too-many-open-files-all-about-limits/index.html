@@ -85,7 +85,7 @@
 <meta property="og:url" content="http://masonluo.com/2018/03/03/too-many-open-files-all-about-limits/index.html">
 <meta property="og:site_name" content="Mason Luo&#39;s Site">
 <meta property="og:description" content="It’s been a while, just can’t figure out how limits work, so I’m like alice into wonderland, right down into the rabbit hole, I finally get satisfied, here is just simple conclusion, the process is no">
-<meta property="og:updated_time" content="2018-03-03T09:40:36.084Z">
+<meta property="og:updated_time" content="2018-03-03T14:27:15.159Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="too many open files...all about limits">
 <meta name="twitter:description" content="It’s been a while, just can’t figure out how limits work, so I’m like alice into wonderland, right down into the rabbit hole, I finally get satisfied, here is just simple conclusion, the process is no">
@@ -331,6 +331,9 @@
       
         <p>It’s been a while, just can’t figure out how limits work, so I’m like alice into wonderland, right down into the rabbit hole, I finally get satisfied, here is just simple conclusion, the process is not that smoothly.</p>
 <p>so every process has an user/owner, there is some mechanism implemented by linux kernel and systemd to control the resources of the system, in case some process became a fork bomb or open() bomb, and each open() or fork() need some data structure in the kernel slab cache, the total number of which is limited by RAM, which is calculated by kernel based on available memory, this mechanism is implemented in kernel, also where the error message “too many open files…” came from, the kernel api is setrlimit(), getrlimit(), etc, in userspace, it is called by systemd, in PAM_LIMIT module, the specific file is pam_limits.so, which will read the user defined limits at /etc/security/limits.conf, when user is logged in, the limit is per process, which means the number of open files of a process(lsof -p $pid) can’t exceed the number of soft limits(ulimit -Sn), and when that happends, kernel complain: too many open files, you should set the soft limit to some bigger number, but less that hard limit, which is set to much bigger that soft limit, or user defined which also should bigger that hard limit unless specifically needed.</p>
+<p>here is some references I find useful:<br><a id="more"></a><br>Ulimit Cheat Sheet<br><a href="https://lzone.de/cheat-sheet/ulimit" target="_blank" rel="noopener">https://lzone.de/cheat-sheet/ulimit</a></p>
+<p>Apply-changes-to-limits.conf-immediately<br><a href="https://lzone.de/blog/Apply-changes-to-limits.conf-immediately" target="_blank" rel="noopener">https://lzone.de/blog/Apply-changes-to-limits.conf-immediately</a></p>
+<p>How to set limits (ulimit) for services in RHEL6 and older with upstart, sysvinit<br><a href="https://access.redhat.com/solutions/253043" target="_blank" rel="noopener">https://access.redhat.com/solutions/253043</a></p>
 
       
     </div>

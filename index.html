@@ -460,11 +460,16 @@
 
       
         
-          
-            <p>It’s been a while, just can’t figure out how limits work, so I’m like alice into wonderland, right down into the rabbit hole, I finally get satisfied, here is just simple conclusion, the process is not that smoothly.</p>
+          <p>It’s been a while, just can’t figure out how limits work, so I’m like alice into wonderland, right down into the rabbit hole, I finally get satisfied, here is just simple conclusion, the process is not that smoothly.</p>
 <p>so every process has an user/owner, there is some mechanism implemented by linux kernel and systemd to control the resources of the system, in case some process became a fork bomb or open() bomb, and each open() or fork() need some data structure in the kernel slab cache, the total number of which is limited by RAM, which is calculated by kernel based on available memory, this mechanism is implemented in kernel, also where the error message “too many open files…” came from, the kernel api is setrlimit(), getrlimit(), etc, in userspace, it is called by systemd, in PAM_LIMIT module, the specific file is pam_limits.so, which will read the user defined limits at /etc/security/limits.conf, when user is logged in, the limit is per process, which means the number of open files of a process(lsof -p $pid) can’t exceed the number of soft limits(ulimit -Sn), and when that happends, kernel complain: too many open files, you should set the soft limit to some bigger number, but less that hard limit, which is set to much bigger that soft limit, or user defined which also should bigger that hard limit unless specifically needed.</p>
-
-          
+<p>here is some references I find useful:<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/03/too-many-open-files-all-about-limits/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -592,10 +597,15 @@
 
       
         
-          
-            <p>Recently I’m learning Caotonese, so I visit YouTube a lot, a lot great stuff there, and few days ago I saw a video, in which a german guy with fluent Chinese accent, talking about Chinese government’s total shutdown of domestic VPN service after March, while the Shadowsocks service I bought still available, I started to thought about backup plans: rent a VPS, and get a Shadowsocks/StrongSwan server up and running, but what if that VPS is blocked? last chance is to use Tor, which is too slow, you’d be lucky if you get 400kbps, then I thought, it happend before, some sensitive days each year, we always get seriously blocked by GFW, of course they can’t do it for too long, the price is too high and what they want is to quiet the disscussion of some sensitive subject related to polition, one trick to survive through the sensitive moment, use mobile hotspot, even when the wifi is censored, you alway can bypass GFW through telecom station.</p>
-
-          
+          <p>Recently I’m learning Caotonese, so I visit YouTube a lot, a lot great stuff there, and few days ago I saw a video, in which a german guy with fluent Chinese accent, talking about Chinese government’s total shutdown of domestic VPN service after March, while the Shadowsocks service I bought still available, I started to thought about backup plans: rent a VPS, and get a Shadowsocks/StrongSwan server up and running, but what if that VPS is blocked? last chance is to use Tor, which is too slow, you’d be lucky if you get 400kbps, then I thought, it happend before, some sensitive days each year, we always get seriously blocked by GFW, of course they can’t do it for too long, the price is too high and what they want is to quiet the disscussion of some sensitive subject related to polition, one trick to survive through the sensitive moment, use mobile hotspot, even when the wifi is censored, you alway can bypass GFW through telecom station.</p>
+<p>So here’s some ladder to get you through THE WALL:<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/01/gfw-vpn/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
